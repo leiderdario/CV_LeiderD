@@ -55,8 +55,25 @@
 --------------------------------------------------------------*/
 body {
   color: var(--default-color);
-  background-color: var(--background-color);
+  background: linear-gradient(135deg, #667eea 0%, #7ea8f7 25%, #93effb 50%, #3eff9f 75%, #4facfe 100%);
+  background-size: 400% 400%;
+  animation: gradientFlow 15s ease infinite;
   font-family: var(--default-font);
+  min-height: 100vh;
+}
+
+.page-content {
+  background: linear-gradient(135deg, #667eea 0%, #7ea8f7 25%, #93effb 50%, #3eff9f 75%, #4facfe 100%);
+  background-size: 400% 400%;
+  animation: gradientFlow 15s ease infinite;
+  min-height: 100vh;
+}
+
+/* Gradient Animation */
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 a {
@@ -478,11 +495,14 @@ h6 {
 --------------------------------------------------------------*/
 .footer {
   color: var(--default-color);
-  background-color: var(--background-color);
+  background: radial-gradient(ellipse at bottom, #e8f5f7 0%, #f8fafb 50%, #ffffff 100%);
   font-size: 14px;
   text-align: center;
-  padding: 30px 0;
+  padding: 30px 0; /* Reset to normal padding */
   position: relative;
+  z-index: 1002; /* Even higher than navbar to ensure it's always visible */
+  margin-bottom: 120px; /* Increased margin to create more space for navbar */
+  backdrop-filter: blur(10px);
 }
 
 .footer img {
@@ -659,18 +679,123 @@ h6 {
 section,
 .section {
   color: var(--default-color);
-  background-color: var(--background-color);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(15px);
   padding: 60px 0;
   scroll-margin-top: 90px;
   overflow: clip;
+  margin: 20px 0;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 @media (max-width: 1199px) {
-
   section,
   .section {
     scroll-margin-top: 66px;
+    margin: 10px 0;
+    border-radius: 15px;
   }
+}
+
+/*--------------------------------------------------------------
+# Modern Background Enhancement
+--------------------------------------------------------------*/
+/* Ensure content sections have glassmorphism effect */
+#resume,
+#services, 
+#contact,
+#about {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(15px) !important;
+  border-radius: 20px !important;
+  margin: 20px 10px !important;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+}
+
+/* Hero section - sin overlay para mantener diseño original */
+#hero.dark-background {
+  background: var(--background-color) !important;
+  backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* Skills section - Background animado con efecto ola */
+#skills.dark-background {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(45deg, #061247,   #4291b1, #3577b4, #289094, #16947f, #066e69) !important;
+  background-size: 600% 600% !important;
+  animation: waveFlow 8s ease-in-out infinite !important;
+  backdrop-filter: blur(10px) !important;
+  border-radius: 20px !important;
+  margin: 20px 10px !important;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Animación de ola con cambio de colores */
+@keyframes waveFlow {
+  0% { 
+    background-position: 0% 50%; 
+    background: linear-gradient(45deg, #061247, #764ba2, #4291b1, #f5576c, #4facfe, #00f2fe);
+  }
+  20% { 
+    background-position: 100% 0%; 
+    background: linear-gradient(45deg, #764ba2, #4291b1, #f5576c, #4facfe, #00f2fe, #061247);
+  }
+  40% { 
+    background-position: 50% 100%; 
+    background: linear-gradient(45deg, #4291b1, #f5576c, #4facfe, #00f2fe, #061247, #764ba2);
+  }
+  60% { 
+    background-position: 0% 50%; 
+    background: linear-gradient(45deg, #f5576c, #4facfe, #00f2fe, #061247, #764ba2, #4291b1);
+  }
+  80% { 
+    background-position: 100% 100%; 
+    background: linear-gradient(45deg, #4facfe, #00f2fe, #061247, #764ba2, #4291b1, #f5576c);
+  }
+  100% { 
+    background-position: 0% 50%; 
+    background: linear-gradient(45deg, #061247, #764ba2, #4291b1, #f5576c, #4facfe, #00f2fe);
+  }
+}
+
+/* Efecto de ola adicional */
+#skills.dark-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.05) 100%);
+  animation: waveOverlay 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes waveOverlay {
+  0%, 100% { 
+    transform: translateX(-100%) skewX(-15deg); 
+    opacity: 0;
+  }
+  50% { 
+    transform: translateX(100%) skewX(-15deg); 
+    opacity: 1;
+  }
+}
+
+/* Asegurar que el contenido esté por encima */
+#skills .container {
+  position: relative;
+  z-index: 2;
 }
 
 /*--------------------------------------------------------------
@@ -866,16 +991,24 @@ section,
 }
 
 .skills .skill-card {
-  background: white;
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
   padding: 30px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
   transition: all 0.3s ease;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   position: relative;
   overflow: hidden;
   z-index: 1;
+}
+
+.skills .skill-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(31, 38, 135, 0.6);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .skills .skill-card::before {
@@ -887,11 +1020,6 @@ section,
   height: 5px;
   background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
   transition: all 0.3s ease;
-}
-
-.skills .skill-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
 .skills .skill-icon {
@@ -918,8 +1046,72 @@ section,
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 15px;
-  color: var(--heading-color);
+  color: #ffffff;
   transition: all 0.3s ease;
+}
+
+.skills .skill-description {
+  font-size: 14px;
+  color: #ffffff;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+/* Show More Skills Button */
+.show-more-container {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.btn-show-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 30px;
+  background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 90, 156, 0.3);
+}
+
+.btn-show-more:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 90, 156, 0.4);
+}
+
+.btn-show-more i {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.btn-show-more.expanded i {
+  transform: rotate(45deg);
+}
+
+/* Hidden Skills Container */
+.skills-hidden {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.skills-hidden.show {
+  opacity: 1;
+  max-height: 2000px;
+  display: grid;
 }
 
 .skills .skill-level {
@@ -953,6 +1145,36 @@ section,
 }
 
 /* Skill categories colors */
+.skills .skill-card:nth-child(3n+1) {
+  background: linear-gradient(135deg, rgba(0, 90, 156, 0.15), rgba(0, 156, 166, 0.15));
+  border: 1px solid rgba(0, 90, 156, 0.3);
+}
+
+.skills .skill-card:nth-child(3n+1):hover {
+  background: linear-gradient(135deg, rgba(0, 90, 156, 0.25), rgba(0, 156, 166, 0.25));
+  border: 1px solid rgba(0, 90, 156, 0.5);
+}
+
+.skills .skill-card:nth-child(3n+2) {
+  background: linear-gradient(135deg, rgba(0, 156, 166, 0.15), rgba(0, 179, 179, 0.15));
+  border: 1px solid rgba(0, 156, 166, 0.3);
+}
+
+.skills .skill-card:nth-child(3n+2):hover {
+  background: linear-gradient(135deg, rgba(0, 156, 166, 0.25), rgba(0, 179, 179, 0.25));
+  border: 1px solid rgba(0, 156, 166, 0.5);
+}
+
+.skills .skill-card:nth-child(3n) {
+  background: linear-gradient(135deg, rgba(0, 179, 179, 0.15), rgba(0, 90, 156, 0.15));
+  border: 1px solid rgba(0, 179, 179, 0.3);
+}
+
+.skills .skill-card:nth-child(3n):hover {
+  background: linear-gradient(135deg, rgba(0, 179, 179, 0.25), rgba(0, 90, 156, 0.25));
+  border: 1px solid rgba(0, 179, 179, 0.5);
+}
+
 .skills .skill-card:nth-child(3n+1) .skill-icon,
 .skills .skill-card:nth-child(3n+1) .skill-level {
   background: linear-gradient(135deg, #005A9C, #009CA6);
@@ -978,6 +1200,1516 @@ section,
 @media (max-width: 576px) {
   .skills .skills-container {
     grid-template-columns: 1fr;
+  }
+}
+
+/*--------------------------------------------------------------
+# Portfolio Section
+--------------------------------------------------------------*/
+.portfolio {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f0f9ff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23e0e7ff" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.portfolio .container {
+  position: relative;
+  z-index: 2;
+}
+
+.portfolio .section-title h2 {
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--heading-color);
+  position: relative;
+}
+
+.portfolio .section-title h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(135deg, var(--accent-color), var(--gradient-start));
+  border-radius: 2px;
+}
+
+.portfolio .section-title p {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 18px;
+  color: var(--default-color);
+  opacity: 0.8;
+}
+
+/* Portfolio Filters */
+.portfolio-filters {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.portfolio-filters ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.portfolio-filters li {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--default-color);
+  padding: 12px 25px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-filters li:hover,
+.portfolio-filters li.filter-active {
+  background: linear-gradient(135deg, var(--accent-color), var(--gradient-start));
+  color: white;
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 156, 166, 0.3);
+}
+
+/* Portfolio Container */
+.portfolio-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.portfolio-item {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+}
+
+.portfolio-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.portfolio-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-wrap img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.portfolio-item:hover .portfolio-wrap img {
+  transform: scale(1.1);
+}
+
+/* Portfolio Info Overlay */
+.portfolio-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 156, 166, 0.9), rgba(0, 90, 156, 0.9));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: all 0.4s ease;
+  padding: 20px;
+  text-align: center;
+}
+
+.portfolio-item:hover .portfolio-info {
+  opacity: 1;
+}
+
+.portfolio-info h4 {
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  transform: translateY(20px);
+  transition: transform 0.4s ease 0.1s;
+}
+
+.portfolio-info p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  margin-bottom: 20px;
+  transform: translateY(20px);
+  transition: transform 0.4s ease 0.2s;
+}
+
+.portfolio-item:hover .portfolio-info h4,
+.portfolio-item:hover .portfolio-info p {
+  transform: translateY(0);
+}
+
+.portfolio-links {
+  display: flex;
+  gap: 15px;
+  transform: translateY(20px);
+  transition: transform 0.4s ease 0.3s;
+}
+
+.portfolio-item:hover .portfolio-links {
+  transform: translateY(0);
+}
+
+.portfolio-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  color: white;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.portfolio-links a:hover {
+  background: white;
+  color: var(--accent-color);
+  transform: scale(1.1);
+  border-color: white;
+}
+
+/* Portfolio Description */
+.portfolio-description {
+  padding: 25px;
+  background: white;
+}
+
+.portfolio-description h5 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--heading-color);
+  margin-bottom: 15px;
+}
+
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.tech-tag {
+  background: linear-gradient(135deg, var(--accent-color), var(--gradient-start));
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.portfolio-description p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--default-color);
+  margin-bottom: 15px;
+}
+
+.portfolio-description p:last-child {
+  margin-bottom: 0;
+}
+
+/* Featured Project Styles - SecureChat AI */
+.portfolio-item:first-child {
+  border: 2px solid var(--accent-color);
+  position: relative;
+  overflow: visible;
+  background: transparent !important; /* Force transparent background */
+}
+
+.portfolio-item:first-child::before {
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  background: linear-gradient(135deg, var(--accent-color), var(--gradient-start));
+  color: white;
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 20px;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(0, 156, 166, 0.3);
+}
+
+/* SecureChat AI - Clean zoom effect with dual images */
+.portfolio-item:first-child .portfolio-wrap {
+  position: relative;
+  overflow: hidden;
+  background: transparent !important; /* Force transparent background */
+  border-radius: 20px 20px 0 0;
+}
+
+/* Remove all overlays during hover for clean zoom effect */
+.portfolio-item:first-child:hover .portfolio-info {
+  opacity: 0 !important;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Remove all white backgrounds from description area for SecureChat AI */
+.portfolio-item:first-child .portfolio-description {
+  background: transparent !important;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, rgba(0, 156, 166, 0.1), rgba(0, 90, 156, 0.1)) !important;
+  border-radius: 0 0 20px 20px;
+}
+
+.portfolio-item:first-child .portfolio-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../img/portfolio/chatbot/login.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent !important; /* Force transparent */
+  opacity: 0;
+  transition: all 0.8s ease;
+  transform: scale(1.1);
+  z-index: 1;
+  border-radius: 20px 20px 0 0;
+}
+
+.portfolio-item:first-child .portfolio-wrap img {
+  transition: all 0.8s ease;
+  transform: scale(1);
+  z-index: 2;
+  position: relative;
+  display: block;
+  background: transparent !important; /* Ensure image container is transparent */
+  border-radius: 20px 20px 0 0;
+}
+
+.portfolio-item:first-child:hover .portfolio-wrap img {
+  transform: scale(1.2);
+  opacity: 0;
+}
+
+.portfolio-item:first-child:hover .portfolio-wrap::after {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.portfolio-item:first-child:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 25px 50px rgba(0, 156, 166, 0.2);
+}
+
+.portfolio-item:first-child .portfolio-info {
+  background: linear-gradient(135deg, rgba(0, 156, 166, 0.95), rgba(0, 90, 156, 0.95)) !important;
+  z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-item:first-child .portfolio-info h4 {
+  font-size: 26px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.portfolio-item:first-child .tech-tag {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)) !important;
+  color: var(--accent-color);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+}
+
+/* Ensure no white elements interfere with the zoom effect */
+.portfolio-item:first-child * {
+  box-sizing: border-box;
+}
+
+.portfolio-item:first-child .portfolio-links a:hover {
+  background: rgba(255, 255, 255, 0.9) !important; /* Semi-transparent instead of solid white */
+}
+
+/* Show info on hover but only when not doing zoom effect */
+.portfolio-item:first-child:not(:hover) .portfolio-info {
+  opacity: 0;
+}
+
+.portfolio-item:first-child:hover .portfolio-info {
+  opacity: 0 !important; /* Completely hide during zoom effect */
+}
+
+/* Featured Project Styles - Teacher-App-English (4th project) */
+.portfolio-item:nth-child(4) {
+  border: 2px solid #4f46e5;
+  position: relative;
+  overflow: visible;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.08), rgba(99, 102, 241, 0.05)) !important;
+  border-radius: 20px;
+  padding: 5px;
+  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.15);
+}
+
+.portfolio-item:nth-child(4)::before {
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: white;
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 20px;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+  animation: edu-pulse 2.8s ease-in-out infinite;
+}
+
+@keyframes edu-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+  }
+  50% { 
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(79, 70, 229, 0.6);
+  }
+}
+
+/* Teacher-App-English - Clean zoom effect with dual images */
+.portfolio-item:nth-child(4) .portfolio-wrap {
+  position: relative;
+  overflow: hidden;
+  background: transparent !important;
+  border-radius: 20px 20px 0 0;
+}
+
+/* Educational badge styling */
+.portfolio-edu-badge {
+  margin: 10px 0;
+}
+
+.edu-status {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+  animation: edu-glow 3s ease-in-out infinite;
+}
+
+@keyframes edu-glow {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+/* Remove all overlays during hover for clean zoom effect */
+.portfolio-item:nth-child(4):hover .portfolio-info {
+  opacity: 0 !important;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Educational description area styling */
+.portfolio-item:nth-child(4) .portfolio-description {
+  background: transparent !important;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(99, 102, 241, 0.1)) !important;
+  border-radius: 0 0 20px 20px;
+}
+
+.portfolio-item:nth-child(4) .portfolio-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../img/portfolio/teacher-app/login.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent !important;
+  opacity: 0;
+  transition: all 0.8s ease;
+  transform: scale(1.1);
+  z-index: 1;
+  border-radius: 20px 20px 0 0;
+}
+
+.portfolio-item:nth-child(4) .portfolio-wrap img {
+  transition: all 0.8s ease;
+  transform: scale(1);
+  z-index: 2;
+  position: relative;
+  display: block;
+  background: transparent !important;
+  border-radius: 20px 20px 0 0;
+}
+
+.portfolio-item:nth-child(4):hover .portfolio-wrap img {
+  transform: scale(1.2);
+  opacity: 0;
+}
+
+.portfolio-item:nth-child(4):hover .portfolio-wrap::after {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.portfolio-item:nth-child(4):hover {
+  transform: translateY(-15px);
+  box-shadow: 0 25px 50px rgba(79, 70, 229, 0.25);
+}
+
+.portfolio-item:nth-child(4) .portfolio-info {
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.95), rgba(99, 102, 241, 0.95)) !important;
+  z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-item:nth-child(4) .portfolio-info h4 {
+  font-size: 26px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+.portfolio-item:nth-child(4) .portfolio-description h5 {
+  color: #4f46e5;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-item:nth-child(4) .tech-tag {
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.15), rgba(99, 102, 241, 0.1)) !important;
+  color: #4f46e5;
+  border: 1px solid rgba(79, 70, 229, 0.25);
+  font-weight: 600;
+}
+
+/* Ensure no white elements interfere with the zoom effect */
+.portfolio-item:nth-child(4) * {
+  box-sizing: border-box;
+}
+
+.portfolio-item:nth-child(4) .portfolio-links a:hover {
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Show info on hover but only when not doing zoom effect */
+.portfolio-item:nth-child(4):not(:hover) .portfolio-info {
+  opacity: 0;
+}
+
+.portfolio-item:nth-child(4):hover .portfolio-info {
+  opacity: 0 !important; /* Completely hide during zoom effect */
+}
+
+/* Alira Project Styles - Award Winner Badge */
+.portfolio-development-badge {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.development-status {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 3px 10px rgba(231, 76, 60, 0.4);
+  animation: pulse 2s infinite;
+  border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 3px 10px rgba(231, 76, 60, 0.4); }
+  50% { box-shadow: 0 5px 20px rgba(231, 76, 60, 0.6); }
+  100% { box-shadow: 0 3px 10px rgba(231, 76, 60, 0.4); }
+}
+
+/* Mahates Project Styles - Coming Soon Badge */
+.portfolio-status-badge {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.coming-soon-status {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 3px 10px rgba(52, 152, 219, 0.4);
+  animation: glow 2.5s ease-in-out infinite;
+  border: 1px solid rgba(52, 152, 219, 0.3);
+}
+
+@keyframes glow {
+  0%, 100% { 
+    box-shadow: 0 3px 10px rgba(52, 152, 219, 0.4);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 5px 20px rgba(52, 152, 219, 0.6);
+    transform: scale(1.02);
+  }
+}
+
+/* RAGalyze Project Styles - Advanced AI Badge */
+.portfolio-tech-badge {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.rag-tech-status {
+  background: linear-gradient(135deg, #9b59b6, #8e44ad);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 3px 10px rgba(155, 89, 182, 0.4);
+  animation: tech-pulse 2.8s ease-in-out infinite;
+  border: 1px solid rgba(155, 89, 182, 0.3);
+}
+
+@keyframes tech-pulse {
+  0%, 100% { 
+    box-shadow: 0 3px 10px rgba(155, 89, 182, 0.4);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 6px 18px rgba(155, 89, 182, 0.7);
+    transform: scale(1.03);
+  }
+}
+
+/* Plant Disease Detection Project Styles - ML Vision Badge */
+.portfolio-ml-badge {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.ml-vision-status {
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 3px 10px rgba(39, 174, 96, 0.4);
+  animation: vision-pulse 3s ease-in-out infinite;
+  border: 1px solid rgba(39, 174, 96, 0.3);
+}
+
+@keyframes vision-pulse {
+  0%, 100% { 
+    box-shadow: 0 3px 10px rgba(39, 174, 96, 0.4);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 6px 20px rgba(39, 174, 96, 0.7);
+    transform: scale(1.04);
+  }
+}
+
+/* Alira Project - Award Winner with Zoom Effect */
+.portfolio-item:nth-child(2) {
+  border: 2px solid #FFD700;
+  position: relative;
+  overflow: visible;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.1)) !important;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.portfolio-item:nth-child(2)::before {
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  color: #8B4513;
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 20px;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Alira - Clean zoom effect with dual images */
+.portfolio-item:nth-child(2) .portfolio-wrap {
+  position: relative;
+  overflow: hidden;
+  background: transparent !important;
+  border-radius: 20px 20px 0 0;
+}
+
+/* Keep the award text visible during hover - special for Alira */
+.portfolio-item:nth-child(2) .portfolio-info {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.65), rgba(248, 248, 248, 0.55)) !important;
+  z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: opacity 0.3s ease;
+  color: #333 !important;
+}
+
+.portfolio-item:nth-child(2) .portfolio-info h4 {
+  font-size: 22px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  color: #222 !important;
+  font-weight: 700;
+}
+
+.portfolio-item:nth-child(2) .portfolio-info p {
+  color: #333 !important;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Hide portfolio links (buttons) for Alira */
+.portfolio-item:nth-child(2) .portfolio-links {
+  display: none !important;
+}
+
+/* Special behavior: Keep specific text visible during hover */
+.portfolio-item:nth-child(2):hover .portfolio-info {
+  opacity: 1 !important; /* Keep visible during zoom effect */
+}
+
+.portfolio-item:nth-child(2):not(:hover) .portfolio-info {
+  opacity: 0;
+}
+
+/* Dual image zoom effect for Alira */
+.portfolio-item:nth-child(2) .portfolio-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../img/portfolio/alira/think.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent !important;
+  opacity: 0;
+  transition: all 0.8s ease;
+  transform: scale(1.1);
+  z-index: 1;
+  border-radius: 20px 20px 0 0;
+}
+
+.portfolio-item:nth-child(2) .portfolio-wrap img {
+  transition: all 0.8s ease;
+  transform: scale(1);
+  z-index: 2;
+  position: relative;
+  display: block;
+  background: transparent !important;
+  border-radius: 20px 20px 0 0;
+}
+
+.portfolio-item:nth-child(2):hover .portfolio-wrap img {
+  transform: scale(1.2);
+  opacity: 0;
+}
+
+.portfolio-item:nth-child(2):hover .portfolio-wrap::after {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.portfolio-item:nth-child(2):hover {
+  transform: translateY(-15px);
+  box-shadow: 0 25px 50px rgba(255, 215, 0, 0.3);
+}
+
+.portfolio-item:nth-child(2) .portfolio-description {
+  background: transparent !important;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.1)) !important;
+  border-radius: 0 0 20px 20px;
+}
+
+.portfolio-item:nth-child(2) .portfolio-description h5 {
+  color: #D4AF37;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Special tech tags for Alira */
+.portfolio-item:nth-child(2) .tech-tag {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 165, 0, 0.7)) !important;
+  color: #8B4513;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  font-weight: 600;
+}
+
+/* Ensure no white elements interfere with the zoom effect */
+.portfolio-item:nth-child(2) * {
+  box-sizing: border-box;
+}
+
+.portfolio-item:nth-child(2) .portfolio-links a:hover {
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Mahates Project - Third Most Important */
+.portfolio-item:nth-child(3) {
+  border: 2px solid #3498db;
+  position: relative;
+  overflow: visible;
+  background: linear-gradient(135deg, rgba(52, 152, 219, 0.08), rgba(41, 128, 185, 0.05)) !important;
+  border-radius: 20px;
+  padding: 5px;
+  box-shadow: 0 8px 25px rgba(52, 152, 219, 0.15);
+}
+
+.portfolio-item:nth-child(3)::before {
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 20px;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+  animation: municipal-glow 3s ease-in-out infinite;
+}
+
+@keyframes municipal-glow {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+  }
+  50% { 
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.5);
+  }
+}
+
+.portfolio-item:nth-child(3):hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(52, 152, 219, 0.25);
+}
+
+.portfolio-item:nth-child(3) .portfolio-description h5 {
+  color: #2980b9;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Special tech tags for Mahates */
+.portfolio-item:nth-child(3) .tech-tag {
+  background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), rgba(41, 128, 185, 0.1));
+  border: 1px solid rgba(52, 152, 219, 0.25);
+  color: #2980b9;
+  font-weight: 600;
+}
+
+/* Mahates - Clean zoom effect with dual images */
+.portfolio-item:nth-child(3) .portfolio-wrap {
+  position: relative;
+  overflow: hidden;
+  background: transparent !important;
+  border-radius: 20px 20px 0 0;
+}
+
+/* Remove all overlays during hover for clean zoom effect */
+.portfolio-item:nth-child(3):hover .portfolio-info {
+  opacity: 0 !important;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Remove all white backgrounds from description area for Mahates */
+.portfolio-item:nth-child(3) .portfolio-description {
+  background: transparent !important;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(41, 128, 185, 0.1)) !important;
+  border-radius: 0 0 20px 20px;
+}
+
+.portfolio-item:nth-child(3) .portfolio-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../img/portfolio/mahates/mahates.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent !important;
+  opacity: 0;
+  transition: all 0.8s ease;
+  transform: scale(1.1);
+  z-index: 1;
+  border-radius: 20px 20px 0 0;
+}
+
+.portfolio-item:nth-child(3) .portfolio-wrap img {
+  transition: all 0.8s ease;
+  transform: scale(1);
+  z-index: 2;
+  position: relative;
+  display: block;
+  background: transparent !important;
+  border-radius: 20px 20px 0 0;
+}
+
+.portfolio-item:nth-child(3):hover .portfolio-wrap img {
+  transform: scale(1.2);
+  opacity: 0;
+}
+
+.portfolio-item:nth-child(3):hover .portfolio-wrap::after {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.portfolio-item:nth-child(3):hover {
+  transform: translateY(-15px);
+  box-shadow: 0 25px 50px rgba(52, 152, 219, 0.3);
+}
+
+.portfolio-item:nth-child(3) .portfolio-info {
+  background: linear-gradient(135deg, rgba(52, 152, 219, 0.95), rgba(41, 128, 185, 0.95)) !important;
+  z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-item:nth-child(3) .portfolio-info h4 {
+  font-size: 26px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Ensure no white elements interfere with the zoom effect */
+.portfolio-item:nth-child(3) * {
+  box-sizing: border-box;
+}
+
+.portfolio-item:nth-child(3) .portfolio-links a:hover {
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Show info on hover but only when not doing zoom effect */
+.portfolio-item:nth-child(3):not(:hover) .portfolio-info {
+  opacity: 0;
+}
+
+.portfolio-item:nth-child(3):hover .portfolio-info {
+  opacity: 0 !important; /* Completely hide during zoom effect */
+}
+
+/* RAGalyze Project - Advanced AI Technology */
+.portfolio-item:nth-child(5) {
+  border: 2px solid #9b59b6;
+  position: relative;
+  overflow: visible;
+  background: linear-gradient(135deg, rgba(155, 89, 182, 0.08), rgba(142, 68, 173, 0.05)) !important;
+  border-radius: 20px;
+  padding: 5px;
+  box-shadow: 0 8px 25px rgba(155, 89, 182, 0.15);
+}
+
+.portfolio-item:nth-child(5)::before {
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  background: linear-gradient(135deg, #9b59b6, #8e44ad);
+  color: white;
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 20px;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+  animation: ai-glow 3.2s ease-in-out infinite;
+}
+
+@keyframes ai-glow {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+  }
+  50% { 
+    transform: scale(1.04);
+    box-shadow: 0 8px 25px rgba(155, 89, 182, 0.6);
+  }
+}
+
+.portfolio-item:nth-child(5):hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(155, 89, 182, 0.25);
+}
+
+.portfolio-item:nth-child(5) .portfolio-description h5 {
+  color: #8e44ad;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Special tech tags for RAGalyze */
+.portfolio-item:nth-child(5) .tech-tag {
+  background: linear-gradient(135deg, rgba(155, 89, 182, 0.15), rgba(142, 68, 173, 0.1));
+  border: 1px solid rgba(155, 89, 182, 0.25);
+  color: #8e44ad;
+  font-weight: 600;
+}
+
+/* RAGalyze - Clean zoom effect with dual images */
+.portfolio-item:nth-child(5) .portfolio-wrap {
+  position: relative;
+  overflow: hidden;
+  background: transparent !important;
+  border-radius: 20px 20px 0 0;
+}
+
+/* Remove all overlays during hover for clean zoom effect */
+.portfolio-item:nth-child(5):hover .portfolio-info {
+  opacity: 0 !important;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Remove all white backgrounds from description area for RAGalyze */
+.portfolio-item:nth-child(5) .portfolio-description {
+  background: transparent !important;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, rgba(155, 89, 182, 0.1), rgba(142, 68, 173, 0.1)) !important;
+  border-radius: 0 0 20px 20px;
+}
+
+.portfolio-item:nth-child(5) .portfolio-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../img/portfolio/ragalyze/inicio.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent !important;
+  opacity: 0;
+  transition: all 0.8s ease;
+  transform: scale(1.1);
+  z-index: 1;
+  border-radius: 20px 20px 0 0;
+}
+
+.portfolio-item:nth-child(5) .portfolio-wrap img {
+  transition: all 0.8s ease;
+  transform: scale(1);
+  z-index: 2;
+  position: relative;
+  display: block;
+  background: transparent !important;
+  border-radius: 20px 20px 0 0;
+}
+
+.portfolio-item:nth-child(5):hover .portfolio-wrap img {
+  transform: scale(1.2);
+  opacity: 0;
+}
+
+.portfolio-item:nth-child(5):hover .portfolio-wrap::after {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.portfolio-item:nth-child(5):hover {
+  transform: translateY(-15px);
+  box-shadow: 0 25px 50px rgba(155, 89, 182, 0.3);
+}
+
+.portfolio-item:nth-child(5) .portfolio-info {
+  background: linear-gradient(135deg, rgba(155, 89, 182, 0.95), rgba(142, 68, 173, 0.95)) !important;
+  z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-item:nth-child(5) .portfolio-info h4 {
+  font-size: 26px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Ensure no white elements interfere with the zoom effect */
+.portfolio-item:nth-child(5) * {
+  box-sizing: border-box;
+}
+
+.portfolio-item:nth-child(5) .portfolio-links a:hover {
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Show info on hover but only when not doing zoom effect */
+.portfolio-item:nth-child(5):not(:hover) .portfolio-info {
+  opacity: 0;
+}
+
+.portfolio-item:nth-child(5):hover .portfolio-info {
+  opacity: 0 !important; /* Completely hide during zoom effect */
+}
+
+/* Plant Disease Detection Project - Computer Vision & ML */
+.portfolio-item:nth-child(6) {
+  border: 2px solid #27ae60;
+  position: relative;
+  overflow: visible;
+  background: linear-gradient(135deg, rgba(39, 174, 96, 0.08), rgba(46, 204, 113, 0.05)) !important;
+  border-radius: 20px;
+  padding: 5px;
+  box-shadow: 0 8px 25px rgba(39, 174, 96, 0.15);
+}
+
+.portfolio-item:nth-child(6)::before {
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  color: white;
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 20px;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+  animation: vision-glow 3.5s ease-in-out infinite;
+}
+
+@keyframes vision-glow {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+  }
+  50% { 
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(39, 174, 96, 0.6);
+  }
+}
+
+.portfolio-item:nth-child(6):hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(39, 174, 96, 0.25);
+}
+
+.portfolio-item:nth-child(6) .portfolio-description h5 {
+  color: #2ecc71;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Special tech tags for Plant Disease Detection */
+.portfolio-item:nth-child(6) .tech-tag {
+  background: linear-gradient(135deg, rgba(39, 174, 96, 0.15), rgba(46, 204, 113, 0.1));
+  border: 1px solid rgba(39, 174, 96, 0.25);
+  color: #2ecc71;
+  font-weight: 600;
+}
+
+/* Plant Disease Detection - Zoom Effect */
+.portfolio-item:nth-child(6) .portfolio-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../img/portfolio/plant-disease/api.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent !important;
+  opacity: 0;
+  transition: all 0.8s ease;
+  transform: scale(1.1);
+  z-index: 1;
+  border-radius: 20px 20px 0 0;
+}
+
+.portfolio-item:nth-child(6) .portfolio-wrap img {
+  transition: all 0.8s ease;
+  transform: scale(1);
+  z-index: 2;
+  position: relative;
+  display: block;
+  background: transparent !important;
+  border-radius: 20px 20px 0 0;
+}
+
+.portfolio-item:nth-child(6):hover .portfolio-wrap img {
+  transform: scale(1.2);
+  opacity: 0;
+}
+
+.portfolio-item:nth-child(6):hover .portfolio-wrap::after {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.portfolio-item:nth-child(6):hover .portfolio-info {
+  opacity: 0 !important; /* Completely hide during zoom effect */
+}
+
+/* Enhanced Responsive Design */
+/* Tablet Landscape */
+@media (max-width: 1024px) {
+  .portfolio-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    padding: 0 15px;
+  }
+  
+  .portfolio-info h4 {
+    font-size: 22px;
+  }
+  
+  .portfolio-description {
+    padding: 25px;
+  }
+  
+  .tech-stack {
+    gap: 8px;
+  }
+  
+  .tech-tag {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+}
+
+/* Tablet Portrait */
+@media (max-width: 768px) {
+  .portfolio-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 0 20px;
+  }
+  
+  .portfolio-filters {
+    margin-bottom: 40px;
+  }
+  
+  .portfolio-filters ul {
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .portfolio-filters li {
+    padding: 12px 20px;
+    font-size: 14px;
+    min-width: auto;
+    border-radius: 25px;
+  }
+  
+  .portfolio-item {
+    margin: 0 auto;
+    max-width: 500px;
+  }
+  
+  .portfolio-info h4 {
+    font-size: 20px;
+    line-height: 1.3;
+  }
+  
+  .portfolio-info p {
+    font-size: 14px;
+    margin: 8px 0;
+  }
+  
+  .portfolio-description h5 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  .portfolio-description p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  /* Improved badge responsiveness */
+  .portfolio-development-badge,
+  .portfolio-ml-badge,
+  .portfolio-municipal-badge,
+  .portfolio-edu-badge,
+  .portfolio-rag-badge {
+    margin: 8px 0;
+  }
+  
+  .award-status,
+  .ml-vision-status,
+  .municipal-status,
+  .edu-status,
+  .rag-status {
+    font-size: 10px;
+    padding: 6px 12px;
+  }
+}
+
+/* Large Mobile */
+@media (max-width: 576px) {
+  .portfolio {
+    padding: 60px 0;
+  }
+  
+  .portfolio .section-title {
+    margin-bottom: 40px;
+  }
+  
+  .portfolio .section-title h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+  
+  .portfolio .section-title p {
+    font-size: 16px;
+  }
+  
+  .portfolio-container {
+    gap: 25px;
+    padding: 0 15px;
+  }
+  
+  .portfolio-filters ul {
+    gap: 8px;
+  }
+  
+  .portfolio-filters li {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+  
+  .portfolio-wrap img {
+    height: 220px;
+    object-fit: cover;
+  }
+  
+  .portfolio-description {
+    padding: 20px;
+  }
+  
+  .portfolio-description h5 {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  
+  .tech-stack {
+    gap: 6px;
+    margin: 12px 0;
+  }
+  
+  .tech-tag {
+    padding: 5px 10px;
+    font-size: 10px;
+    border-radius: 12px;
+  }
+  
+  .portfolio-info h4 {
+    font-size: 18px;
+  }
+  
+  .portfolio-info p {
+    font-size: 13px;
+  }
+  
+  /* Zoom effects optimization for mobile */
+  .portfolio-item:hover {
+    transform: translateY(-8px) !important;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .portfolio-container {
+    padding: 0 10px;
+    gap: 20px;
+  }
+  
+  .portfolio-filters li {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .portfolio-wrap img {
+    height: 200px;
+  }
+  
+  .portfolio-description {
+    padding: 15px;
+  }
+  
+  .portfolio-description h5 {
+    font-size: 15px;
+  }
+  
+  .portfolio-description p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  
+  .tech-tag {
+    padding: 4px 8px;
+    font-size: 9px;
+  }
+  
+  .portfolio-info h4 {
+    font-size: 16px;
+  }
+  
+  .portfolio-info p {
+    font-size: 12px;
+  }
+  
+  /* Disable complex animations on very small screens */
+  .portfolio-item:hover {
+    transform: translateY(-4px) !important;
+  }
+  
+  .portfolio-item:hover .portfolio-wrap img,
+  .portfolio-item:hover .portfolio-wrap::after {
+    transform: scale(1.05) !important;
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 360px) {
+  .portfolio {
+    padding: 40px 0;
+  }
+  
+  .portfolio .section-title h2 {
+    font-size: 24px;
+  }
+  
+  .portfolio-container {
+    padding: 0 8px;
+  }
+  
+  .portfolio-filters ul {
+    gap: 5px;
+  }
+  
+  .portfolio-filters li {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+  
+  .portfolio-wrap img {
+    height: 180px;
+  }
+  
+  .portfolio-description {
+    padding: 12px;
+  }
+  
+  .tech-stack {
+    gap: 4px;
+  }
+  
+  .tech-tag {
+    padding: 3px 6px;
+    font-size: 8px;
   }
 }
 
@@ -1523,8 +3255,9 @@ section,
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #00B3B3 0%, #002E5D 100%);
-  z-index: -1;
+  background: url(../img/hero-bg.jpg) top center no-repeat !important;
+  background-size: cover !important;
+  z-index: 0;
 }
 
 .hero-particles {
@@ -1533,18 +3266,19 @@ section,
   height: 100%;
   top: 0;
   left: 0;
+  z-index: 1;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 1;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 2;
 }
 
 .hero .container {
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .hero-img {
@@ -1968,7 +3702,7 @@ section,
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 10px;
-  color: white;
+  color: var(--heading-color);
 }
 
 .skill-level-badge {
@@ -2021,9 +3755,10 @@ section,
 }
 
 .skill-description {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  color: var(--default-color);
   line-height: 1.4;
+  opacity: 0.8;
 }
 
 .technical-expertise {
@@ -2532,4 +4267,913 @@ section,
   background: rgba(40, 167, 69, 0.1);
   color: #28a745;
   border: 1px solid rgba(40, 167, 69, 0.2);
+}
+
+/*--------------------------------------------------------------
+# Transforming Navbar - Modern & Digital Design
+--------------------------------------------------------------*/
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.9); /* Glassmorphism effect */
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* More professional shadow */
+  opacity: 1;
+}
+
+/* Hidden state for navbar when at very bottom */
+.navbar.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-logo {
+  flex-shrink: 0;
+}
+
+.navbar-logo img {
+  height: 42px;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 8px;
+}
+
+.navbar-menu li {
+  margin: 0;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 16px 24px; /* More generous padding */
+  color: var(--nav-color);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.5px; /* Better legibility */
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(135deg, #00d4ff 0%, #00b8d4 100%);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
+}
+
+.nav-link:hover {
+  color: var(--nav-hover-color);
+  background-color: rgba(0, 156, 166, 0.12);
+  transform: scale(1.05) translateY(-1px);
+  box-shadow: 0 4px 15px rgba(0, 156, 166, 0.2);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 24px;
+}
+
+.nav-link.active {
+  color: var(--nav-hover-color);
+  background-color: rgba(0, 156, 166, 0.15);
+  font-weight: 600; /* Bold for active state */
+  box-shadow: 0 2px 10px rgba(0, 156, 166, 0.25);
+}
+
+.navbar-cv-btn {
+  flex-shrink: 0;
+}
+
+.cv-download-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #00d4ff 0%, #00b8d4 100%); /* Modern gradient */
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4); /* Colored shadow */
+  position: relative;
+  overflow: hidden;
+}
+
+.cv-download-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.cv-download-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 30px rgba(0, 212, 255, 0.6);
+  color: white;
+}
+
+.cv-download-btn:hover::before {
+  left: 100%;
+}
+
+.cv-download-btn i {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.cv-download-btn:hover i {
+  transform: scale(1.1);
+}
+
+/* Pulse animation for attention */
+@keyframes pulse {
+  0% { box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4); }
+  50% { box-shadow: 0 4px 30px rgba(0, 212, 255, 0.6); }
+  100% { box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4); }
+}
+
+.cv-download-btn {
+  animation: pulse 2s infinite;
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: var(--heading-color);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Sidebar Mode (15-85% scroll) - Modern Gradient Design */
+.navbar.sidebar-mode {
+  top: 0;
+  left: 0;
+  right: auto;
+  width: 300px; /* Slightly wider for better spacing */
+  height: 100vh;
+  background: linear-gradient(180deg, #0a7377 0%, #12a085 100%); /* Modern gradient */
+  border-bottom: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 4px 0 40px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+  backdrop-filter: blur(15px);
+}
+
+.navbar.sidebar-mode .navbar-container {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 40px 24px; /* More generous spacing */
+  gap: 40px; /* Increased gap */
+  max-width: none;
+}
+
+.navbar.sidebar-mode .navbar-logo {
+  text-align: center;
+  padding: 30px 24px; /* More padding for better spacing */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  border-radius: 16px;
+  margin-bottom: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.navbar.sidebar-mode .navbar-logo::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+}
+
+.navbar.sidebar-mode .navbar-logo img {
+  height: 55px; /* Larger logo */
+  filter: brightness(1.3) contrast(1.2) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)); /* Enhanced visibility */
+  background: rgba(255, 255, 255, 0.9); /* White background for logo */
+  padding: 8px;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.navbar.sidebar-mode .navbar-menu {
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.navbar.sidebar-mode .nav-link {
+  justify-content: flex-start;
+  padding: 18px 24px; /* More generous padding */
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  position: relative;
+  overflow: hidden;
+  border-left: 3px solid transparent;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar.sidebar-mode .nav-link::after {
+  display: none;
+}
+
+.navbar.sidebar-mode .nav-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #00d4ff, #00b8d4);
+  transform: scaleY(0);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0 2px 2px 0;
+}
+
+.navbar.sidebar-mode .nav-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(8px);
+  color: white;
+  border-left-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.navbar.sidebar-mode .nav-link.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-weight: 600;
+  border-left-color: #00d4ff;
+  box-shadow: 0 4px 25px rgba(0, 212, 255, 0.3);
+  transform: translateX(4px);
+}
+
+.navbar.sidebar-mode .nav-link.active::before {
+  transform: scaleY(1);
+}
+
+/* Glow effect for active link */
+.navbar.sidebar-mode .nav-link.active {
+  position: relative;
+}
+
+.navbar.sidebar-mode .nav-link.active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, rgba(0, 212, 255, 0.1), transparent);
+  border-radius: 14px;
+  pointer-events: none;
+}
+
+.navbar.sidebar-mode .navbar-cv-btn {
+  margin-top: auto; /* Push to bottom */
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.navbar.sidebar-mode .cv-download-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 18px 24px;
+  font-size: 15px;
+  background: linear-gradient(135deg, #00d4ff 0%, #00b8d4 100%);
+  box-shadow: 0 6px 25px rgba(0, 212, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.navbar.sidebar-mode .cv-download-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 35px rgba(0, 212, 255, 0.6);
+}
+
+/* Footer Mode (85-100% scroll) - Glassmorphism Design */
+.navbar.footer-mode {
+  top: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.9); /* Glassmorphism effect */
+  backdrop-filter: blur(15px);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: none;
+  box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.1); /* Superior shadow */
+  z-index: 998; /* Lower than footer (1002) to ensure footer is always on top */
+}
+
+.navbar.footer-mode .navbar-container {
+  padding: 0 24px;
+}
+
+.navbar.footer-mode .nav-link {
+  padding: 14px 20px; /* More compact but elegant */
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.navbar.footer-mode .nav-link:hover {
+  background-color: rgba(0, 156, 166, 0.12);
+  transform: scale(1.03) translateY(-1px);
+  box-shadow: 0 4px 15px rgba(0, 156, 166, 0.2);
+}
+
+.navbar.footer-mode .nav-link.active {
+  background-color: rgba(0, 156, 166, 0.15);
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(0, 156, 166, 0.25);
+}
+
+.navbar.footer-mode .cv-download-btn {
+  padding: 12px 20px;
+  font-size: 13px;
+}
+
+/* Ensure footer is above navbar */
+.footer {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  font-size: 14px;
+  text-align: center;
+  padding: 30px 0; /* Reset to normal padding */
+  position: relative;
+  z-index: 1001; /* Higher than navbar */
+  margin-bottom: 100px; /* Add bottom margin to create space for navbar */
+}
+
+/* Page Content Adjustments - Enhanced Spacing */
+.page-content {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  padding-top: 80px;
+}
+
+.page-content.with-sidebar {
+  padding-left: 300px; /* Adjusted for new sidebar width */
+  padding-top: 0;
+}
+
+.page-content.with-footer {
+  padding-bottom: 120px; /* Reduced but sufficient space for navbar */
+  padding-top: 0;
+}
+
+/* Mobile Responsive - Enhanced Design */
+@media (max-width: 1199px) {
+  .navbar-menu {
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 30px 24px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    border-radius: 0 0 20px 20px;
+    z-index: 9999;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .navbar-menu.active {
+    display: flex !important;
+    z-index: 10000;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .navbar-menu li {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 18px 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    color: var(--heading-color);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    background: rgba(0, 156, 166, 0.08);
+    transform: translateX(8px);
+    border-color: rgba(0, 156, 166, 0.2);
+    color: var(--gradient-start);
+    box-shadow: 0 5px 20px rgba(0, 156, 166, 0.15);
+  }
+
+  .nav-link:hover::before,
+  .nav-link.active::before {
+    transform: scaleY(1);
+  }
+
+  .nav-link:last-child {
+    margin-bottom: 0;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+    position: relative;
+    z-index: 10001;
+  }
+
+  .navbar-cv-btn {
+    order: -1;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .cv-download-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(0, 90, 156, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .cv-download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 90, 156, 0.4);
+    color: white;
+  }
+
+  .cv-download-btn span {
+    display: inline !important;
+  }
+
+  .cv-download-btn i {
+    font-size: 16px;
+  }
+
+  /* Enhanced mobile menu toggle */
+  .mobile-menu-toggle {
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-menu-toggle:hover {
+    background-color: rgba(0, 156, 166, 0.1);
+  }
+
+  /* Disable transformations on mobile but keep enhanced styling */
+  .navbar.sidebar-mode,
+  .navbar.footer-mode {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar.sidebar-mode .navbar-container,
+  .navbar.footer-mode .navbar-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    gap: 0;
+    max-width: none;
+  }
+
+  .navbar.sidebar-mode .navbar-logo,
+  .navbar.footer-mode .navbar-logo {
+    text-align: left;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .navbar.sidebar-mode .navbar-logo img,
+  .navbar.footer-mode .navbar-logo img {
+    height: 40px;
+  }
+
+  .navbar.sidebar-mode .navbar-menu,
+  .navbar.footer-mode .navbar-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    flex-direction: column;
+    padding: 24px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    border-radius: 0 0 16px 16px;
+  }
+
+  .navbar.sidebar-mode .navbar-menu.active,
+  .navbar.footer-mode .navbar-menu.active {
+    display: flex !important;
+    top: 80px;
+  }
+
+  .navbar.sidebar-mode .nav-link,
+  .navbar.footer-mode .nav-link {
+    justify-content: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    font-size: 15px;
+    transform: none;
+    color: var(--nav-color);
+  }
+
+  .navbar.sidebar-mode .nav-link:hover,
+  .navbar.footer-mode .nav-link:hover {
+    background-color: rgba(0, 156, 166, 0.08);
+    transform: translateX(4px);
+  }
+
+  .navbar.sidebar-mode .navbar-cv-btn,
+  .navbar.footer-mode .navbar-cv-btn {
+    order: -1;
+    margin-top: 0;
+  }
+
+  .page-content.with-sidebar {
+    padding-left: 0;
+    padding-top: 80px;
+  }
+
+  .page-content.with-footer {
+    padding-bottom: 100px; /* Reasonable space for mobile */
+    padding-top: 0;
+  }
+}
+
+/* Small Mobile Responsive - Enhanced Design */
+@media (max-width: 768px) {
+  /* Navigation improvements */
+  .navbar {
+    height: 70px;
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .navbar-container {
+    padding: 0 20px;
+  }
+
+  .navbar-logo img {
+    height: 38px;
+    transition: all 0.3s ease;
+  }
+
+  .cv-download-btn {
+    padding: 12px 16px;
+    font-size: 13px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .cv-download-btn i {
+    font-size: 14px;
+  }
+
+  .page-content {
+    padding-top: 70px;
+  }
+
+  /* Hero section improvements */
+  .hero {
+    padding: 80px 0 60px;
+    min-height: 70vh;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+    line-height: 1.2;
+    margin-bottom: 15px;
+  }
+
+  .hero p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+  }
+
+  /* About section improvements */
+  .about {
+    padding: 60px 0;
+  }
+
+  .about .section-title h2 {
+    font-size: 28px;
+  }
+
+  .about .row {
+    row-gap: 30px;
+  }
+
+  /* Skills section improvements */
+  .skills {
+    padding: 60px 0;
+  }
+
+  .skills .progress {
+    height: 8px;
+    border-radius: 4px;
+  }
+
+  .skills .progress-bar {
+    border-radius: 4px;
+  }
+
+  /* Resume section improvements */
+  .resume {
+    padding: 60px 0;
+  }
+
+  .resume-item {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .resume-item h4 {
+    font-size: 18px;
+  }
+
+  .resume-item h5 {
+    font-size: 14px;
+  }
+
+  /* Contact section improvements */
+  .contact {
+    padding: 60px 0;
+  }
+
+  .contact .info-item {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .contact .info-item i {
+    font-size: 24px;
+  }
+
+  .contact .info-item h3 {
+    font-size: 18px;
+  }
+
+  /* Footer improvements */
+  .navbar.footer-mode {
+    height: 70px;
+    padding: 10px 0;
+  }
+
+  .navbar.footer-mode .nav-link {
+    padding: 12px 18px;
+    font-size: 13px;
+    border-radius: 18px;
+  }
+
+  .page-content.with-footer {
+    padding-bottom: 90px;
+  }
+
+  .navbar-menu {
+    padding: 25px 20px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    border-radius: 15px;
+    margin: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-link {
+    padding: 15px 0;
+    font-size: 15px;
+    border-radius: 8px;
+    margin: 3px 0;
+  }
+}
+
+/* Extra responsive improvements for very small screens */
+@media (max-width: 480px) {
+  .navbar-container {
+    padding: 0 15px;
+  }
+
+  .cv-download-btn {
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+
+  .cv-download-btn span {
+    display: none;
+  }
+
+  .hero {
+    padding: 60px 0 40px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .section-title h2 {
+    font-size: 24px !important;
+  }
+
+  .section-title p {
+    font-size: 14px !important;
+  }
+
+  /* Make all sections more compact */
+  .about,
+  .skills,
+  .portfolio,
+  .resume,
+  .contact {
+    padding: 40px 0 !important;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+
+  /* Improve button spacing */
+  .navbar-menu .nav-link {
+    padding: 12px 0;
+    font-size: 14px;
+  }
+
+  .navbar-cv-btn {
+    margin: 15px 0;
+    padding-top: 15px;
+  }
+}
+
+/* Landscape orientation optimizations */
+@media (max-height: 600px) and (orientation: landscape) {
+  .hero {
+    padding: 40px 0 30px;
+    min-height: 50vh;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .navbar {
+    height: 60px;
+  }
+
+  .page-content {
+    padding-top: 60px;
+  }
+
+  .portfolio,
+  .about,
+  .skills,
+  .resume,
+  .contact {
+    padding: 40px 0 !important;
+  }
+}
+
+/* High-DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .portfolio-wrap img,
+  .hero img,
+  .about img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  .navbar-logo img {
+    image-rendering: -webkit-optimize-contrast;
+  }
 }

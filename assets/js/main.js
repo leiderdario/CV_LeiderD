@@ -10,47 +10,49 @@
    */
   function toggleScrolled() {
     const selectBody = document.querySelector('body');
-    const selectHeader = document.querySelector('#header');
-    if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
-    window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
+    const selectHeader = document.querySelector('#navbar');
+    if (selectHeader) {
+      window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
+    }
   }
 
-  document.addEventListener('scroll', toggleScrolled);
+  document.addEventListener('scroll', toggleScrolled); 
   window.addEventListener('load', toggleScrolled);
 
   /**
-   * Mobile nav toggle
+   * Mobile nav toggle - Updated for new navbar
    */
-  const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+  const mobileNavToggleBtn = document.querySelector('.mobile-menu-toggle');
 
-  function mobileNavToogle() {
-    document.querySelector('body').classList.toggle('mobile-nav-active');
-    mobileNavToggleBtn.classList.toggle('bi-list');
-    mobileNavToggleBtn.classList.toggle('bi-x');
+  function mobileNavToggle() {
+    console.log('Mobile nav toggle clicked'); // Debug
+    const navbarMenu = document.querySelector('.navbar-menu');
+    if (navbarMenu) {
+      navbarMenu.classList.toggle('active');
+      console.log('Menu active class:', navbarMenu.classList.contains('active')); // Debug
+      console.log('Menu computed display:', window.getComputedStyle(navbarMenu).display); // Debug
+    }
+    if (mobileNavToggleBtn) {
+      mobileNavToggleBtn.classList.toggle('active');
+    }
   }
-  mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
+  
+  if (mobileNavToggleBtn) {
+    mobileNavToggleBtn.addEventListener('click', mobileNavToggle);
+    console.log('Mobile menu toggle button found and event listener added'); // Debug
+  } else {
+    console.log('Mobile menu toggle button not found'); // Debug
+  }
 
   /**
    * Hide mobile nav on same-page/hash links
    */
-  document.querySelectorAll('#navmenu a').forEach(navmenu => {
-    navmenu.addEventListener('click', () => {
-      if (document.querySelector('.mobile-nav-active')) {
-        mobileNavToogle();
+  document.querySelectorAll('.navbar-menu a').forEach(navlink => {
+    navlink.addEventListener('click', () => {
+      const navbarMenu = document.querySelector('.navbar-menu');
+      if (navbarMenu && navbarMenu.classList.contains('active')) {
+        mobileNavToggle();
       }
-    });
-
-  });
-
-  /**
-   * Toggle mobile nav dropdowns
-   */
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function(e) {
-      e.preventDefault();
-      this.parentNode.classList.toggle('active');
-      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-      e.stopImmediatePropagation();
     });
   });
 
@@ -215,3 +217,48 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+
+/**
+ * Toggle More Skills Function
+ */
+function toggleMoreSkills() {
+  const hiddenSkills = document.getElementById('hiddenSkills');
+  const showMoreBtn = document.getElementById('showMoreBtn');
+  const btnText = showMoreBtn.querySelector('span');
+  const btnIcon = showMoreBtn.querySelector('i');
+  
+  if (hiddenSkills.style.display === 'none' || hiddenSkills.style.display === '') {
+    // Show hidden skills
+    hiddenSkills.style.display = 'grid';
+    setTimeout(() => {
+      hiddenSkills.classList.add('show');
+    }, 10);
+    
+    // Update button text and icon
+    btnText.textContent = 'Ocultar tecnologías';
+    btnIcon.className = 'bi bi-dash-circle';
+    showMoreBtn.classList.add('expanded');
+    
+    // Smooth scroll to see the new skills
+    setTimeout(() => {
+      hiddenSkills.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'nearest' 
+      });
+    }, 300);
+    
+  } else {
+    // Hide skills
+    hiddenSkills.classList.remove('show');
+    
+    // Update button text and icon
+    btnText.textContent = 'Ver todas las tecnologías';
+    btnIcon.className = 'bi bi-plus-circle';
+    showMoreBtn.classList.remove('expanded');
+    
+    // Hide after animation
+    setTimeout(() => {
+      hiddenSkills.style.display = 'none';
+    }, 500);
+  }
+}
