@@ -20,6 +20,43 @@
   window.addEventListener('load', toggleScrolled);
 
   /**
+   * Navbar transformation on scroll - moves to right and hides at bottom
+   */
+  function handleNavbarScroll() {
+    const navbar = document.querySelector('.navbar');
+    const footer = document.querySelector('footer');
+    
+    if (!navbar || !footer) return;
+    
+    const scrollPosition = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const footerTop = footer.offsetTop;
+    const scrolledPastHero = scrollPosition > 300;
+    
+    // Move navbar to the right after scrolling past hero
+    if (scrolledPastHero) {
+      navbar.classList.add('scrolled-right');
+    } else {
+      navbar.classList.remove('scrolled-right');
+    }
+    
+    // Hide navbar when reaching footer area
+    const distanceFromBottom = documentHeight - (scrollPosition + windowHeight);
+    const footerHeight = footer.offsetHeight;
+    
+    if (scrollPosition + windowHeight >= footerTop) {
+      navbar.classList.add('hidden');
+    } else {
+      navbar.classList.remove('hidden');
+    }
+  }
+
+  document.addEventListener('scroll', handleNavbarScroll);
+  window.addEventListener('load', handleNavbarScroll);
+  window.addEventListener('resize', handleNavbarScroll);
+
+  /**
    * Mobile nav toggle - Updated for new navbar
    */
   const mobileNavToggleBtn = document.querySelector('.mobile-menu-toggle');
@@ -215,6 +252,45 @@
   }
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
+
+  /**
+   * Counter Animation for Stats
+   */
+  function animateCounter(element, target, duration = 2000) {
+    const start = 0;
+    const increment = target / (duration / 16); // 60 FPS
+    let current = start;
+    
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        element.textContent = Math.ceil(target);
+        clearInterval(timer);
+      } else {
+        element.textContent = Math.ceil(current);
+      }
+    }, 16);
+  }
+
+  // Intersection Observer for counter animation
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+        entry.target.classList.add('counted');
+        const counters = entry.target.querySelectorAll('[data-counter]');
+        counters.forEach(counter => {
+          const target = parseInt(counter.getAttribute('data-counter'));
+          animateCounter(counter, target);
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+
+  // Observe hero stats if they exist
+  const heroStats = document.querySelector('.hero .stats');
+  if (heroStats) {
+    statsObserver.observe(heroStats);
+  }
 
 })();
 

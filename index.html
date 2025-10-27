@@ -73,8 +73,11 @@
 
 <body class="index-page">
 
+  <!-- Skip to main content for accessibility -->
+  <a href="#hero" class="skip-to-main">Saltar al contenido principal</a>
+
   <!-- Transforming Navbar -->
-  <nav id="navbar" class="navbar">
+  <nav id="navbar" class="navbar" role="navigation" aria-label="Navegación principal">
     <div class="navbar-container">
       <!-- Logo -->
       <div class="navbar-logo">
@@ -146,24 +149,27 @@
             </p>
             
             <div class="hero-buttons" data-aos="fade-up" data-aos-delay="800">
-              <a href="#about" class="btn-get-started">Conoce más</a>
-              <a href="#contact" class="btn-watch-video">
+              <a href="#about" class="btn-get-started" aria-label="Conocer más sobre Leider Dario">
+                <span>Conoce más</span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
+              <a href="#contact" class="btn-contact-primary" aria-label="Contactar a Leider Dario">
                 <i class="bi bi-envelope-heart"></i>
-                <span>Contáctame</span>
+                <span>¡Trabajemos Juntos!</span>
               </a>
             </div>
             
-            <div class="hero-stats" data-aos="fade-up" data-aos-delay="1000">
+            <div class="hero-stats stats" data-aos="fade-up" data-aos-delay="1000">
               <div class="stat-item">
-                <span class="stat-number">5+</span>
+                <span class="stat-number" data-counter="5">0</span><span class="stat-number">+</span>
                 <span class="stat-label">Años de Experiencia</span>
               </div>
               <div class="stat-item">
-                <span class="stat-number">15+</span>
+                <span class="stat-number" data-counter="15">0</span><span class="stat-number">+</span>
                 <span class="stat-label">Proyectos Completados</span>
               </div>
               <div class="stat-item">
-                <span class="stat-number">10+</span>
+                <span class="stat-number" data-counter="10">0</span><span class="stat-number">+</span>
                 <span class="stat-label">Tecnologías Dominadas</span>
               </div>
             </div>
@@ -193,9 +199,9 @@
               <img src="assets/img/profile-img.jpg" class="img-fluid about-img" alt="">
               <div class="about-img-overlay">
                 <div class="social-links">
-                  <a href="https://github.com/leiderdario" target="_blank"><i class="bi bi-github"></i></a>
-                  <a href="https://www.linkedin.com/in/leiderdario" target="_blank"><i class="bi bi-linkedin"></i></a>
-                  <a href="https://x.com/L_DarioD" target="_blank"><i class="bi bi-twitter-x"></i></a>
+                  <a href="https://github.com/leiderdario" target="_blank" aria-label="Visitar perfil de GitHub de Leider Dario"><i class="bi bi-github"></i></a>
+                  <a href="https://www.linkedin.com/in/leiderdario" target="_blank" aria-label="Visitar perfil de LinkedIn de Leider Dario"><i class="bi bi-linkedin"></i></a>
+                  <a href="https://x.com/L_DarioD" target="_blank" aria-label="Visitar perfil de Twitter/X de Leider Dario"><i class="bi bi-twitter-x"></i></a>
                 </div>
               </div>
             </div>
@@ -1127,17 +1133,17 @@
       <img src="assets/img/logo.png" alt="">
       <p>Listo para aportar mis habilidades en el próximo proyecto.</p>
       <div class="social-links d-flex justify-content-center">
-        <a href="https://x.com/L_DarioD?t=lbw4Zm4AnwsE8t0lCCATEw&s=09" target="_blank"><i class="bi bi-twitter-x"></i></a> 
-        <a href="https://www.facebook.com/profile.php?id=100074401686033&mibextid=JRoKGi" target="_blank"><i class="bi bi-facebook"></i></a>
-        <a href="https://www.instagram.com/leider.dario/profilecard/?igsh=MjZvNGhyZ2d5bTlp" target="_blank"><i class="bi bi-instagram"></i></a>
-        <a href="https://www.youtube.com/channel/UCzg8bLwH7CaXtUCXmDN0gRg" target="_blank"><i class="bi bi-youtube"></i></a>
-        <a href="https://github.com/leiderdario" target="_blank"><i class="bi bi-github"></i></a>
+        <a href="https://x.com/L_DarioD?t=lbw4Zm4AnwsE8t0lCCATEw&s=09" target="_blank" aria-label="Seguir en Twitter/X"><i class="bi bi-twitter-x"></i></a> 
+        <a href="https://www.facebook.com/profile.php?id=100074401686033&mibextid=JRoKGi" target="_blank" aria-label="Seguir en Facebook"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.instagram.com/leider.dario/profilecard/?igsh=MjZvNGhyZ2d5bTlp" target="_blank" aria-label="Seguir en Instagram"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.youtube.com/channel/UCzg8bLwH7CaXtUCXmDN0gRg" target="_blank" aria-label="Suscribirse en YouTube"><i class="bi bi-youtube"></i></a>
+        <a href="https://github.com/leiderdario" target="_blank" aria-label="Ver repositorios en GitHub"><i class="bi bi-github"></i></a>
       </div>
     </div>
   </footer>
 
   <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center" aria-label="Volver arriba"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Preloader -->
   <div id="preloader"></div>
@@ -1203,23 +1209,33 @@
       });
     });
 
-    // Particles.js configuration
-    particlesJS('particles-js', {
-      particles: {
-        number: { value: 80, density: { enable: true, value_area: 800 } },
-        color: { value: "#ffffff" },
-        shape: { type: "circle" },
-        opacity: { value: 0.5, random: false },
-        size: { value: 3, random: true },
-        line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
-        move: { enable: true, speed: 6, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
-      },
-      interactivity: {
-        detect_on: "canvas",
-        events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
-        modes: { grab: { distance: 400, line_linked: { opacity: 1 } }, bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 }, repulse: { distance: 200, duration: 0.4 }, push: { particles_nb: 4 }, remove: { particles_nb: 2 } }
-      },
-      retina_detect: true
+    // Particles.js configuration - Wait for library to load
+    window.addEventListener('load', function() {
+      if (typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+          particles: {
+            number: { value: 80, density: { enable: true, value_area: 800 } },
+            color: { value: "#ffffff" },
+            shape: { type: "circle" },
+            opacity: { value: 0.5, random: false },
+            size: { value: 3, random: true },
+            line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+            move: { enable: true, speed: 6, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
+          },
+          interactivity: {
+            detect_on: "canvas",
+            events: { onhover: { enable: true, mode: "bubble" }, onclick: { enable: true, mode: "push" }, resize: true },
+            modes: { 
+              grab: { distance: 400, line_linked: { opacity: 1 } }, 
+              bubble: { distance: 250, size: 6, duration: 2, opacity: 0.8, speed: 3 }, 
+              repulse: { distance: 200, duration: 0.4 }, 
+              push: { particles_nb: 4 }, 
+              remove: { particles_nb: 2 } 
+            }
+          },
+          retina_detect: true
+        });
+      }
     });
 
     // Skills filter functionality
