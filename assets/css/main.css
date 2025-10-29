@@ -3135,6 +3135,22 @@ section,
   font-size: 20px;
 }
 
+.btn-article {
+  background: linear-gradient(135deg, #f5576c, #f093fb);
+  color: white;
+}
+
+.btn-article:hover {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(245, 87, 108, 0.4);
+  color: white;
+}
+
+.btn-article i {
+  font-size: 20px;
+}
+
 /* Responsive */
 @media (max-width: 991px) {
   .conference-item .row {
