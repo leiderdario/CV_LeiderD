@@ -247,6 +247,15 @@
                   </ul>
                 </div>
               </div>
+
+              <div class="row about-details" style="margin-top: 20px;">
+                <div class="col-lg-12">
+                  <ul>
+                    <li><i class="bi bi-chevron-right"></i> <strong>CV Creativo:</strong> <span><a href="https://cv-l-dario.vercel.app" target="_blank" style="color: var(--accent-color); text-decoration: none;">cv-l-dario.vercel.app</a></span></li>
+                    <li><i class="bi bi-chevron-right"></i> <strong>Logro Destacado:</strong> <span>Ganador del Tercer Seminario de Inmersión a la Ciencia, Tecnología e Innovación (Mompox, Junio 2025)</span></li>
+                  </ul>
+                </div>
+              </div>
               
               <div class="about-quote" data-aos="fade-up" data-aos-delay="500">
                 <blockquote>
@@ -274,20 +283,210 @@
       <p>Tecnologías y herramientas que domino para crear soluciones innovadoras</p>
     </div>
     
-    <!-- Skills Categories -->
-    <div class="skills-categories" data-aos="fade-up" data-aos-delay="100">
-      <div class="category-filter">
-        <button class="filter-btn active" data-filter="all">Todas</button>
-        <button class="filter-btn" data-filter="frontend">Frontend</button>
-        <button class="filter-btn" data-filter="backend">Backend</button>
-        <button class="filter-btn" data-filter="mobile">Mobile</button>
-        <button class="filter-btn" data-filter="ai-ml">AI/ML</button>
-        <button class="filter-btn" data-filter="database">Base de Datos</button>
-        <button class="filter-btn" data-filter="tools">Herramientas</button>
+    <!-- Skills Categories Collapsible -->
+    <div class="skills-categories-compact" data-aos="fade-up" data-aos-delay="100">
+      <div class="skills-accordion">
+        <div class="accordion-item">
+          <button class="accordion-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#skillsFrontend" aria-expanded="false" aria-controls="skillsFrontend">
+            <i class="bi bi-code-slash"></i>
+            <span>Frontend Development</span>
+            <i class="bi bi-chevron-down accordion-icon"></i>
+          </button>
+          <div id="skillsFrontend" class="accordion-collapse collapse" data-bs-parent=".skills-accordion">
+            <div class="accordion-body">
+              <div class="skills-grid-compact">
+                <div class="skill-card-compact frontend">
+                  <h4>HTML5</h4>
+                  <p>Semántico y accesible</p>
+                </div>
+                <div class="skill-card-compact frontend">
+                  <h4>CSS3</h4>
+                  <p>Animaciones, Flexbox, Grid</p>
+                </div>
+                <div class="skill-card-compact frontend">
+                  <h4>JavaScript</h4>
+                  <p>ES6+, DOM, APIs</p>
+                </div>
+                <div class="skill-card-compact frontend">
+                  <h4>React.js</h4>
+                  <p>Hooks, Context, Redux</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#skillsBackend" aria-expanded="false" aria-controls="skillsBackend">
+            <i class="bi bi-server"></i>
+            <span>Backend Development</span>
+            <i class="bi bi-chevron-down accordion-icon"></i>
+          </button>
+          <div id="skillsBackend" class="accordion-collapse collapse" data-bs-parent=".skills-accordion">
+            <div class="accordion-body">
+              <div class="skills-grid-compact">
+                <div class="skill-card-compact backend">
+                  <h4>Python</h4>
+                  <p>Django, Flask, FastAPI</p>
+                </div>
+                <div class="skill-card-compact backend">
+                  <h4>PHP</h4>
+                  <p>Laravel, WordPress</p>
+                </div>
+                <div class="skill-card-compact backend">
+                  <h4>C++</h4>
+                  <p>OOP, Algoritmos, STL</p>
+                </div>
+                <div class="skill-card-compact backend">
+                  <h4>Ruby</h4>
+                  <p>Ruby on Rails</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#skillsAiML" aria-expanded="false" aria-controls="skillsAiML">
+            <i class="bi bi-brain"></i>
+            <span>AI & Machine Learning</span>
+            <i class="bi bi-chevron-down accordion-icon"></i>
+          </button>
+          <div id="skillsAiML" class="accordion-collapse collapse" data-bs-parent=".skills-accordion">
+            <div class="accordion-body">
+              <div class="skills-grid-compact">
+                <div class="skill-card-compact ai-ml">
+                  <h4>TensorFlow</h4>
+                  <p>Deep Learning, Redes Neuronales</p>
+                </div>
+                <div class="skill-card-compact ai-ml">
+                  <h4>PyTorch</h4>
+                  <p>Machine Learning, Computer Vision</p>
+                </div>
+                <div class="skill-card-compact ai-ml">
+                  <h4>LLMs</h4>
+                  <p>Modelos de Lenguaje, GPT, BERT</p>
+                </div>
+                <div class="skill-card-compact ai-ml">
+                  <h4>LangGraph</h4>
+                  <p>AI Agent Orchestration</p>
+                </div>
+                <div class="skill-card-compact ai-ml">
+                  <h4>LangChain</h4>
+                  <p>Framework IA avanzado</p>
+                </div>
+                <div class="skill-card-compact ai-ml">
+                  <h4>Modelos de Difusión</h4>
+                  <p>Stable Diffusion, DALL-E</p>
+                </div>
+                <div class="skill-card-compact ai-ml">
+                  <h4>Ingeniería de Prompts</h4>
+                  <p>Optimización de prompts IA</p>
+                </div>
+                <div class="skill-card-compact ai-ml">
+                  <h4>NLP</h4>
+                  <p>Procesamiento de lenguaje natural</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#skillsDatabase" aria-expanded="false" aria-controls="skillsDatabase">
+            <i class="bi bi-database"></i>
+            <span>Bases de Datos</span>
+            <i class="bi bi-chevron-down accordion-icon"></i>
+          </button>
+          <div id="skillsDatabase" class="accordion-collapse collapse" data-bs-parent=".skills-accordion">
+            <div class="accordion-body">
+              <div class="skills-grid-compact">
+                <div class="skill-card-compact database">
+                  <h4>MySQL</h4>
+                  <p>Optimización, Consultas complejas</p>
+                </div>
+                <div class="skill-card-compact database">
+                  <h4>PostgreSQL</h4>
+                  <p>Consultas avanzadas</p>
+                </div>
+                <div class="skill-card-compact database">
+                  <h4>ChromaDB</h4>
+                  <p>Vector Database</p>
+                </div>
+                <div class="skill-card-compact database">
+                  <h4>SQLite</h4>
+                  <p>Bases de datos embebidas</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#skillsTools" aria-expanded="false" aria-controls="skillsTools">
+            <i class="bi bi-tools"></i>
+            <span>Herramientas & DevOps</span>
+            <i class="bi bi-chevron-down accordion-icon"></i>
+          </button>
+          <div id="skillsTools" class="accordion-collapse collapse" data-bs-parent=".skills-accordion">
+            <div class="accordion-body">
+              <div class="skills-grid-compact">
+                <div class="skill-card-compact tools">
+                  <h4>Git & GitHub</h4>
+                  <p>Control de versiones</p>
+                </div>
+                <div class="skill-card-compact tools">
+                  <h4>Docker</h4>
+                  <p>Contenerización</p>
+                </div>
+                <div class="skill-card-compact tools">
+                  <h4>Kubernetes</h4>
+                  <p>Orquestación y escalado</p>
+                </div>
+                <div class="skill-card-compact tools">
+                  <h4>AWS</h4>
+                  <p>Cloud Computing</p>
+                </div>
+                <div class="skill-card-compact tools">
+                  <h4>AWS SageMaker</h4>
+                  <p>ML en la nube</p>
+                </div>
+                <div class="skill-card-compact tools">
+                  <h4>Azure ML</h4>
+                  <p>Machine Learning en Azure</p>
+                </div>
+                <div class="skill-card-compact tools">
+                  <h4>Google AI Platform</h4>
+                  <p>Plataforma ML de Google</p>
+                </div>
+                <div class="skill-card-compact tools">
+                  <h4>MLflow</h4>
+                  <p>Gestión del ciclo de vida ML</p>
+                </div>
+                <div class="skill-card-compact tools">
+                  <h4>DVC</h4>
+                  <p>Control de versiones para datos</p>
+                </div>
+                <div class="skill-card-compact tools">
+                  <h4>LiveKit</h4>
+                  <p>Real-time Audio/Video Streaming</p>
+                </div>
+                <div class="skill-card-compact tools">
+                  <h4>WordPress</h4>
+                  <p>Themes, Plugins personalizados</p>
+                </div>
+                <div class="skill-card-compact tools">
+                  <h4>Jenkins</h4>
+                  <p>CI/CD Pipeline</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     
-    <div class="skills-grid">
+    <div class="skills-grid" style="display: none;">
       <!-- Featured AI/ML Skills - Primera Fila -->
       <div class="skill-card ai-ml" data-aos="flip-left" data-aos-delay="50">
         <div class="skill-icon">
@@ -834,13 +1033,14 @@
       <div class="row gy-4">
         <!-- Video corto motivacional -->
         <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="video-wrapper video-short">
+          <div class="video-wrapper">
             <iframe 
-              src="https://www.youtube.com/embed/b6Iwhk2_0Ew" 
+              src="https://www.youtube-nocookie.com/embed/b6Iwhk2_0Ew" 
               title="En la Universidad de Zaragoza" 
               frameborder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              allowfullscreen>
+              allowfullscreen
+              referrerpolicy="strict-origin-when-cross-origin">
             </iframe>
           </div>
           <div class="video-caption">
@@ -853,11 +1053,12 @@
         <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
           <div class="video-wrapper">
             <iframe 
-              src="https://www.youtube.com/embed/0JQkCcUkMhk" 
+              src="https://www.youtube-nocookie.com/embed/0JQkCcUkMhk" 
               title="Ponencia ALIRA - Universidad de Zaragoza" 
               frameborder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              allowfullscreen>
+              allowfullscreen
+              referrerpolicy="strict-origin-when-cross-origin">
             </iframe>
           </div>
           <div class="video-caption">
@@ -865,8 +1066,24 @@
             <p>Presentación del proyecto ALIRA</p>
           </div>
         </div>
-        
-        <!-- Contenido descriptivo -->
+
+        <!-- Video Emotion-UNIA - Nueva Demostración -->
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="video-wrapper ">
+            <iframe 
+              src="https://www.youtube-nocookie.com/embed/oSVEGQKIaSQ" 
+              title="Emotion-UNIA: Detección de Emociones en Tiempo Real" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen
+              referrerpolicy="strict-origin-when-cross-origin">
+            </iframe>
+          </div>
+          <div class="video-caption">
+            <h4>Emotion-UNIA Demo</h4>
+            <p>Demostración del sistema de detección de emociones</p>
+          </div>
+        </div>
         <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
           <div class="conference-content">
             <div class="conference-badge">
@@ -959,8 +1176,8 @@
 
             <h3 class="resume-title">Educación</h3>
             <div class="resume-item">
-              <h4>Inteligencia Artificial</h4>
-              <h5>2025 – Actualidad</h5>
+              <h4>Especialización en Inteligencia Artificial</h4>
+              <h5>2026 – Actualidad</h5>
               <p><em>Universidad Tecnológica de Bolívar (UTB), Cartagena, Colombia</em></p>
             </div>
 
@@ -971,6 +1188,12 @@
             </div>
 
 
+
+            <div class="resume-item">
+              <h4>Pedagogía</h4>
+              <h5>Marzo – Abril 2021</h5>
+              <p><em>Ceprondent, Colombia</em></p>
+            </div>
 
             <div class="resume-item">
               <h4>Formación Técnica y Cursos</h4>
@@ -1005,6 +1228,18 @@
 
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
             <h3 class="resume-title">Experiencia Profesional</h3>
+
+            <div class="resume-item">
+              <h4>Ingeniero de Software Contratista / Líder de Proyecto</h4>
+              <h5>Enero 2026 – Presente</h5>
+              <p><em>Alcaldía Municipal de Mahates, Bolívar, Colombia</em></p>
+              <ul>
+                <li>Liderazgo técnico de un equipo de 5 programadores en el desarrollo de soluciones digitales municipales.</li>
+                <li>Diseño y desarrollo de una plataforma web turística para el municipio de Mahates, integrando sistemas de información geográfica y contenido multimedia.</li>
+                <li>Gestión directa con stakeholders municipales y definición de arquitectura de software empresarial.</li>
+                <li>Implementación de mejores prácticas en desarrollo, testing y despliegue para garantizar calidad y sostenibilidad del código.</li>
+              </ul>
+            </div>
             
             <div class="resume-item">
               <h4>Becario Internacional - Ponente de IA</h4>
@@ -1031,7 +1266,7 @@
 
             <div class="resume-item">
               <h4>Soporte Técnico</h4>
-              <h5>Septiembre 2024 – Febrero 2025</h5>
+              <h5>Julio 2024 – Diciembre 2024</h5>
               <p><em>Nequi (Bancolombia S.A.), Medellín, Antioquia</em></p>
               <ul>
                 <li>Brindé soporte técnico especializado a usuarios de la plataforma financiera digital, resolviendo incidencias con un 95% de satisfacción reportada.</li>
@@ -1043,8 +1278,8 @@
 
             <div class="resume-item">
               <h4>Supervisor de Call Center</h4>
-              <h5>Diciembre 2023 – Octubre 2024</h5>
-              <p><em>R&R Sin Límites SAS, Cartagena, Colombia</em></p>
+              <h5>Octubre 2023 – Junio 2024</h5>
+              <p><em>R&R Sin Límites SAS, Medellín, Antioquia</em></p>
               <ul>
                 <li>Supervisé un equipo de 15 agentes, optimizando los flujos de trabajo y mejorando la satisfacción del cliente en un 25% mediante la implementación de nuevas estrategias de atención.</li>
                 <li>Desarrollé e implementé protocolos de resolución de incidencias, reduciendo el tiempo promedio de atención en un 20%.</li>
@@ -1055,7 +1290,7 @@
 
             <div class="resume-item">
               <h4>Desarrollador Backend</h4>
-              <h5>Octubre 2021 – Octubre 2023</h5>
+              <h5>Octubre 2021 – Septiembre 2023</h5>
               <p><em>Dran Digital, Cartagena, Colombia</em></p>
               <ul>
                 <li>Diseñé y desarrollé APIs robustas utilizando Python y MySQL, mejorando la integración de sistemas en un 40% y asegurando una disponibilidad del 99.9%.</li>
